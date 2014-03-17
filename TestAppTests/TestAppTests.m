@@ -28,7 +28,39 @@
 
 - (void)testExample
 {
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+
+#define MACRO_NAME(f) #f
+#define MACRO_VALUE(f) MACRO_NAME(f)
+    
+//PARAM 1
+bool crash_on_demand;
+#ifdef CRASH_ON_DEMAND
+    crash_on_demand = CRASH_ON_DEMAND;
+#else
+    crash_on_demand = @"UNKNOWN";
+#endif
+NSLog(@"CRASH_ON_DEMAND: %u",crash_on_demand);
+
+//PARAM 2
+NSString *clientPropertiesUrl;
+#if defined CLIENT_PROPERTIES_URL
+    clientPropertiesUrl = [@MACRO_VALUE(CLIENT_PROPERTIES_URL) stringByReplacingOccurrencesOfString:@" " withString:@""];
+#else
+    clientPropertiesUrl = @"UNKNOWN";
+#endif
+    
+    NSLog(@"CLIENT_PROPERTIES_URL: %@",clientPropertiesUrl);
+    
+//PARAM 3
+bool test_video_monitor;
+#ifdef TEST_VIDEO_MONITOR
+    test_video_monitor = TEST_VIDEO_MONITOR;
+#else
+    test_video_monitor = @"UNKNOWN";
+#endif
+NSLog(@"TEST_VIDEO_MONITOR: %u",test_video_monitor);
+
+    
 }
 
 @end
