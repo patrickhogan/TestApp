@@ -44,7 +44,7 @@ NSLog(@"CRASH_ON_DEMAND: %u",crash_on_demand);
 //PARAM 2
 NSString *clientPropertiesUrl;
 #if defined CLIENT_PROPERTIES_URL
-    clientPropertiesUrl = [@MACRO_VALUE(CLIENT_PROPERTIES_URL) stringByReplacingOccurrencesOfString:@" " withString:@"&"];
+    clientPropertiesUrl = [@MACRO_VALUE(CLIENT_PROPERTIES_URL) stringByReplacingOccurrencesOfString:@" " withString:@"."];
 #else
     clientPropertiesUrl = @"UNKNOWN";
 #endif
